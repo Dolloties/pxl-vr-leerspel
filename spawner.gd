@@ -4,7 +4,7 @@ export(PackedScene)  var cube
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-export var cubesnelheid = 8
+export var cubesnelheid = 50
 export var cooldown = 100
 
 # Called when the node enters the scene tree for the first time.
