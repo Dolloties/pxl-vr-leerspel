@@ -11,6 +11,7 @@ config_version=4
 [application]
 
 config/name="pxl vr leerspel"
+run/main_scene="res://mainworld.tscn"
 config/icon="res://icon.png"
 
 [gdnative]
