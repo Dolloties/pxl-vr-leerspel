@@ -1,5 +1,11 @@
 extends Spatial
 
+# Get a reference to the other scene
+
+
+# Change the text of the label
+
+
 onready var timer = $Timer
 var can_shoot = true
 export(PackedScene)  var cube
@@ -24,7 +30,11 @@ func shoot():
 		var scene_root = get_tree().get_root().get_children()[0]
 		scene_root.add_child(new_cube)
 		can_shoot = false
+		
 		timer.start()
+		
+
+
 		
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
