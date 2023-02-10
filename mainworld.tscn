@@ -25,6 +25,11 @@ albedo_color = Color( 0, 0, 0, 1 )
 
 [node name="muren" type="Spatial" parent="."]
 
+[node name="MeshInstance6" type="MeshInstance" parent="muren"]
+transform = Transform( 5, 0, 0, 0, 0.1, 0, 0, 0, 50, 0, 40, -40 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 2 )
+
 [node name="MeshInstance" type="MeshInstance" parent="muren"]
 transform = Transform( 5, 0, 0, 0, 0.1, 0, 0, 0, 50, 0, 0, -40 )
 mesh = SubResource( 1 )
@@ -52,19 +57,16 @@ mesh = SubResource( 5 )
 skeleton = NodePath("../MeshInstance2")
 material/0 = SubResource( 6 )
 
-[node name="MeshInstance6" type="MeshInstance" parent="muren"]
-transform = Transform( 5, 0, 0, 0, 0.1, 0, 0, 0, 50, 0, 40, -40 )
-mesh = SubResource( 1 )
-material/0 = SubResource( 2 )
-
 [node name="spawner" type="Spatial" parent="."]
 script = ExtResource( 2 )
 cube = ExtResource( 3 )
+cubesnelheid = 10
 
 [node name="Position3D" type="Position3D" parent="spawner"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -70 )
 
 [node name="Timer" type="Timer" parent="spawner"]
+wait_time = 3.0
 autostart = true
 
 [connection signal="timeout" from="spawner/Timer" to="spawner" method="_on_Timer_timeout"]

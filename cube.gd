@@ -2,7 +2,7 @@ extends Spatial
 
 
 export var snelheid = 50
-const kill_time = 4
+const kill_time = 10
 var timer = 0
 func _physics_process(delta):
 	var forward_direction = global_transform.basis.z.normalized()
