@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://addons/godot-openvr/scenes/ovr_first_person.tscn" type="PackedScene" id=1]
 [ext_resource path="res://spawner.gd" type="Script" id=2]
 [ext_resource path="res://cube.tscn" type="PackedScene" id=3]
+[ext_resource path="res://hugmate/coolvetica/coolvetica rg it.otf" type="DynamicFontData" id=4]
 
 [sub_resource type="CubeMesh" id=1]
 
@@ -18,6 +19,9 @@ albedo_color = Color( 0, 0, 0, 1 )
 
 [sub_resource type="SpatialMaterial" id=6]
 albedo_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="DynamicFont" id=7]
+font_data = ExtResource( 4 )
 
 [node name="mainworld" type="Spatial"]
 
@@ -68,5 +72,12 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -70 )
 [node name="Timer" type="Timer" parent="spawner"]
 wait_time = 3.0
 autostart = true
+
+[node name="foute kant" type="Label3D" parent="."]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 5.31207, 6.79279 )
+pixel_size = 0.1
+modulate = Color( 0.0156863, 0.976471, 0.933333, 1 )
+text = "foute kant (;"
+font = SubResource( 7 )
 
 [connection signal="timeout" from="spawner/Timer" to="spawner" method="_on_Timer_timeout"]
