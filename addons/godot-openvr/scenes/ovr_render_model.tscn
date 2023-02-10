@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://addons/godot-openvr/scenes/ovr_render_model.gd" type="Script" id=1]
 
+[sub_resource type="CylinderMesh" id=1]
+
 [node name="OVRRenderModel" type="MeshInstance"]
+transform = Transform( 1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0 )
+mesh = SubResource( 1 )
 script = ExtResource( 1 )

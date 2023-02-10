@@ -25,10 +25,13 @@ func _process(delta):
 func shoot():
 	if can_shoot:
 		var new_cube = cube.instance()
+		
 		new_cube.global_transform = $Position3D.global_transform
 		new_cube.snelheid = cubesnelheid
 		var scene_root = get_tree().get_root().get_children()[0]
 		scene_root.add_child(new_cube)
+		new_cube.add_child(Label3D)
+		Label3D.text = "test"
 		can_shoot = false
 		
 		timer.start()
