@@ -7,11 +7,12 @@ extends Spatial
 onready var timer = $Timer
 var can_shoot = true
 export(PackedScene)  var cube
+onready var wave_timer = $Timer2
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
 export var cubesnelheid = 10
-var wavecount = 1
+var aantalblokkengespawned = 0
 
  # initialize a counter to keep track of the equation
 
@@ -25,13 +26,13 @@ func _process(delta):
 		
 func shoot():
 	
-	wavecount += 1
+	
 	
 	
 		
 	if can_shoot:
 		var new_cube = cube.instance()
-		
+		aantalblokkengespawned += 1
 		new_cube.global_transform = $Position3D.global_transform
 		new_cube.snelheid = cubesnelheid
 		var scene_root = get_tree().get_root().get_children()[0]
@@ -56,17 +57,19 @@ func shoot():
 			can_shoot = false
 			timer.start()
 			
-		print("wave",wavecount)
-		if wavecount == 2:
+		
+		if aantalblokkengespawned == 5:
 			cubesnelheid == 30
+			$wavee.text = "wave 2!!!"
 			
-		if wavecount == 5:
+			
+		if aantalblokkengespawned == 10:
 			cubesnelheid == 40
 			
-		if wavecount == 8:
+		if aantalblokkengespawned == 15:
 			cubesnelheid == 50
 			
-		if wavecount == 14:
+		if aantalblokkengespawned == 20:
 			cubesnelheid = 60
 			
 
