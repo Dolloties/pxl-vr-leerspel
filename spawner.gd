@@ -6,7 +6,7 @@ export(PackedScene)  var cube
 onready var wave_timer = $Timer2
 export var cubesnelheid = 20
 var aantalblokkengespawned = 0
-
+var rng = RandomNumberGenerator.new()
 
 func _ready():
 	pass
@@ -27,7 +27,8 @@ func shoot():
 		var rand = randi() % 2
 		
 		new_cube.get_node("text").text = result[0]
-		
+		print(result[0])
+		print(result[1])
 		if rand == 1:
 			new_cube.get_node("text2").text = result[1]
 			new_cube.get_node("text3").text = result[2]
@@ -57,30 +58,24 @@ func shoot():
 			$Timer.wait_time == 3.5
 			$wavee.text = "wave 5!!!"
 func get_equation():
-	
-		var first_random_number = randi() % 10
-		var second_random_number = randi() % 10
-		var equation_counter = randi() % 4
-		var rand2 = randi() % 10
-		var rand3 = randi() % 10
-		
-		if equation_counter == 1:
-			
-			var juistantwoord = first_random_number - second_random_number
-			var foutantwoord = juistantwoord - rand2
-			if juistantwoord == foutantwoord:
-				foutantwoord = foutantwoord - rand3
-				return [str(first_random_number)  + "-" + str(second_random_number), str(juistantwoord), str(foutantwoord)]
-			else:
-				return [str(first_random_number)  + "-" + str(second_random_number), str(juistantwoord), str(foutantwoord)]
-			
-		else:
-			var juistantwoord = first_random_number + second_random_number
-			var foutantwoord = juistantwoord + rand2
-			if juistantwoord == foutantwoord:
-				foutantwoord = foutantwoord - rand3
-				return [str(first_random_number)  + "+" + str(second_random_number), str(juistantwoord), str(foutantwoord)]
-			else:
-				return [str(first_random_number)  + "+" + str(second_random_number), str(juistantwoord), str(foutantwoord)]
+
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+	var operators = ["+", "-", "*"]
+	var first_number = int(rng.randf_range(0, 10))
+	var second_number = int(rng.randf_range(0, 10))
+	var operator = operators[int(rng.randf_range(0, operators.size()))]
+	var correct_answer = 0
+	if operator == "+":
+		correct_answer = first_number + second_number
+	elif operator == "-":
+		correct_answer = first_number - second_number
+	elif operator == "*":
+		correct_answer = first_number * second_number
+	var wrong_answer = int(rng.randf_range(correct_answer - 5, correct_answer + 5))
+	while wrong_answer == correct_answer:
+		wrong_answer = int(rng.randf_range(correct_answer - 5, correct_answer + 5))
+	return [str(first_number) + operator + str(second_number), str(correct_answer), str(wrong_answer)]
+
 func _on_Timer_timeout():
 	can_shoot = true 

@@ -29,7 +29,7 @@ func _ready():
 
 func _on_Area_body_entered(body):
 	print("i hit something?", body)
-	
+	#check if it was the good or bad one
 	
 
 # Replace with function body.
