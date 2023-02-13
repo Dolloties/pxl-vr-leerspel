@@ -10,20 +10,25 @@ export(PackedScene)  var cube
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-export var cubesnelheid = 20
-
+export var cubesnelheid = 10
+var wavecount = 1
 
  # initialize a counter to keep track of the equation
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
-	pass # Replace with function body.
+	pass
+	 # Replace with function body.
 
 func _process(delta):
 	shoot()
 		
 func shoot():
+	
+	wavecount += 1
+	
+	
+		
 	if can_shoot:
 		var new_cube = cube.instance()
 		
@@ -38,9 +43,7 @@ func shoot():
 		var rand = randi() % 2
 		
 		new_cube.get_node("text").text = result[0]
-		if cubesnelheid < 28:
-			cubesnelheid = cubesnelheid + 1
-			timer.wait_time = timer.wait_time - 0.1
+		
 		if rand == 1:
 			new_cube.get_node("text2").text = result[1]
 			new_cube.get_node("text3").text = result[2]
@@ -52,6 +55,20 @@ func shoot():
 			
 			can_shoot = false
 			timer.start()
+			
+		print("wave",wavecount)
+		if wavecount == 2:
+			cubesnelheid == 30
+			
+		if wavecount == 5:
+			cubesnelheid == 40
+			
+		if wavecount == 8:
+			cubesnelheid == 50
+			
+		if wavecount == 14:
+			cubesnelheid = 60
+			
 
 # function that returns a different equation each time it's called
 func get_equation():
