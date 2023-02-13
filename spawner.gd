@@ -1,34 +1,20 @@
 extends Spatial
 
-# Get a reference to the other scene
-
-# Change the text of the label
-
 onready var timer = $Timer
 var can_shoot = true
 export(PackedScene)  var cube
 onready var wave_timer = $Timer2
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-export var cubesnelheid = 10
+export var cubesnelheid = 20
 var aantalblokkengespawned = 0
 
- # initialize a counter to keep track of the equation
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
-	 # Replace with function body.
 
 func _process(delta):
 	shoot()
-		
+	
 func shoot():
-	
-	
-	
-	
 		
 	if can_shoot:
 		var new_cube = cube.instance()
@@ -37,9 +23,6 @@ func shoot():
 		new_cube.snelheid = cubesnelheid
 		var scene_root = get_tree().get_root().get_children()[0]
 		scene_root.add_child(new_cube)
-		
-		# change the equation in each new cube
-		
 		var result = get_equation()
 		var rand = randi() % 2
 		
@@ -57,23 +40,22 @@ func shoot():
 			can_shoot = false
 			timer.start()
 			
-		
 		if aantalblokkengespawned == 5:
-			cubesnelheid == 30
+			cubesnelheid = 25
+			$Timer.wait_time == 2
 			$wavee.text = "wave 2!!!"
-			
-			
 		if aantalblokkengespawned == 10:
-			cubesnelheid == 40
-			
+			cubesnelheid = 30
+			$Timer.wait_time == 2.5
+			$wavee.text = "wave 3!!!"
 		if aantalblokkengespawned == 15:
-			cubesnelheid == 50
-			
+			cubesnelheid = 35
+			$Timer.wait_time == 3
+			$wavee.text = "wave 4!!!"
 		if aantalblokkengespawned == 20:
-			cubesnelheid = 60
-			
-
-# function that returns a different equation each time it's called
+			cubesnelheid = 40
+			$Timer.wait_time == 3.5
+			$wavee.text = "wave 5!!!"
 func get_equation():
 	
 		var first_random_number = randi() % 10
@@ -81,7 +63,7 @@ func get_equation():
 		var equation_counter = randi() % 2
 		var rand2 = randi() % 10
 		var rand3 = randi() % 10
-		 # increment the counter each time the function is called
+		
 		if equation_counter == 1:
 			
 			var juistantwoord = first_random_number - second_random_number
@@ -100,13 +82,5 @@ func get_equation():
 				return [str(first_random_number)  + "+" + str(second_random_number), str(juistantwoord), str(foutantwoord)]
 			else:
 				return [str(first_random_number)  + "+" + str(second_random_number), str(juistantwoord), str(foutantwoord)]
-		
-		
-
-
-
-
 func _on_Timer_timeout():
-	
-	
-	can_shoot = true # Replace with function body.
+	can_shoot = true 

@@ -79,12 +79,12 @@ cube = ExtResource( 3 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -70 )
 
 [node name="Timer" type="Timer" parent="spawner"]
-wait_time = 3.0
+wait_time = 1.5
 autostart = true
 
 [node name="wavee" type="Label3D" parent="spawner"]
 transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 1, 0, 8.97884, -9.6058 )
-text = "wave 1"
+text = "wave 1!!!"
 font = SubResource( 10 )
 
 [node name="Timer2" type="Timer" parent="spawner"]
