@@ -4,7 +4,7 @@ onready var timer = $Timer
 var can_shoot = true
 export(PackedScene)  var cube
 onready var wave_timer = $Timer2
-export var cubesnelheid = 20
+export var cubesnelheid = 10
 var aantalblokkengespawned = 0
 var rng = RandomNumberGenerator.new()
 
@@ -42,21 +42,42 @@ func shoot():
 			timer.start()
 			
 		if aantalblokkengespawned == 5:
-			cubesnelheid = 25
-			$Timer.wait_time == 2
-			$wavee.text = "wave 2!!!"
+			cubesnelheid = 15
+			$Timer.wait_time = 4
+			$wavee.text = "round 2!!!"
 		if aantalblokkengespawned == 10:
-			cubesnelheid = 30
-			$Timer.wait_time == 2.5
-			$wavee.text = "wave 3!!!"
+			cubesnelheid = 15
+			$Timer.wait_time = 3.5
+			$wavee.text = "round 3!!!"
 		if aantalblokkengespawned == 15:
-			cubesnelheid = 35
-			$Timer.wait_time == 3
-			$wavee.text = "wave 4!!!"
+			cubesnelheid = 20
+			$Timer.wait_time = 3.5
+			$wavee.text = "round 4!!!"
 		if aantalblokkengespawned == 20:
-			cubesnelheid = 40
-			$Timer.wait_time == 3.5
-			$wavee.text = "wave 5!!!"
+			cubesnelheid = 20
+			$Timer.wait_time = 3
+			$wavee.text = "round 5!!!"
+		if aantalblokkengespawned == 25:
+			cubesnelheid = 25
+			$Timer.wait_time = 3
+			$wavee.text = "round 6!!!"
+		if aantalblokkengespawned == 30:
+			cubesnelheid = 25
+			$Timer.wait_time = 2.5
+			$wavee.text = "round 7!!!"
+		if aantalblokkengespawned == 35:
+			cubesnelheid = 30
+			$Timer.wait_time = 2.5
+			$wavee.text = "round 8!!!"
+		if aantalblokkengespawned == 40:
+			cubesnelheid = 30
+			$Timer.wait_time = 2
+			$wavee.text = "round 9!!!"
+			
+		if aantalblokkengespawned == 45:
+			cubesnelheid = 18
+			$Timer.wait_time = 2
+			$wavee.text = "final round!!!"
 func get_equation():
 
 	var rng = RandomNumberGenerator.new()
@@ -64,7 +85,8 @@ func get_equation():
 	var operators = ["+", "-", "*"]
 	var first_number = int(rng.randf_range(1, 20))
 	var second_number = int(rng.randf_range(1, 20))
-	var maalnummer = int(rng.randf_range(1, 10))
+	var maalnummer = int(rng.randf_range(1, 5))
+	var maalnummer2 = int(rng.randf_range(1, 10))
 	var operator = operators[int(rng.randf_range(0, operators.size()))]
 	var correct_answer = 0
 	if operator == "+":
@@ -72,11 +94,15 @@ func get_equation():
 	elif operator == "-":
 		correct_answer = first_number - second_number
 	elif operator == "*":
-		correct_answer = first_number * maalnummer
+		correct_answer = maalnummer2 * maalnummer
+		
 	var wrong_answer = int(rng.randf_range(correct_answer - 5, correct_answer + 5))
 	while wrong_answer == correct_answer:
 		wrong_answer = int(rng.randf_range(correct_answer - 5, correct_answer + 5))
-	return [str(first_number) + operator + str(second_number), str(correct_answer), str(wrong_answer)]
+	if operator == "*":
+		return [str(maalnummer2) + "*" + str(maalnummer), str(correct_answer), str(wrong_answer)]
+	else:
+		return [str(first_number) + operator + str(second_number), str(correct_answer), str(wrong_answer)]
 
 func _on_Timer_timeout():
 	can_shoot = true 
