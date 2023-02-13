@@ -62,8 +62,9 @@ func get_equation():
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
 	var operators = ["+", "-", "*"]
-	var first_number = int(rng.randf_range(0, 10))
-	var second_number = int(rng.randf_range(0, 10))
+	var first_number = int(rng.randf_range(1, 20))
+	var second_number = int(rng.randf_range(1, 20))
+	var maalnummer = int(rng.randf_range(1, 10))
 	var operator = operators[int(rng.randf_range(0, operators.size()))]
 	var correct_answer = 0
 	if operator == "+":
@@ -71,7 +72,7 @@ func get_equation():
 	elif operator == "-":
 		correct_answer = first_number - second_number
 	elif operator == "*":
-		correct_answer = first_number * second_number
+		correct_answer = first_number * maalnummer
 	var wrong_answer = int(rng.randf_range(correct_answer - 5, correct_answer + 5))
 	while wrong_answer == correct_answer:
 		wrong_answer = int(rng.randf_range(correct_answer - 5, correct_answer + 5))
