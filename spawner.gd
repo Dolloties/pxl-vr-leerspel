@@ -60,7 +60,7 @@ func get_equation():
 	
 		var first_random_number = randi() % 10
 		var second_random_number = randi() % 10
-		var equation_counter = randi() % 2
+		var equation_counter = randi() % 4
 		var rand2 = randi() % 10
 		var rand3 = randi() % 10
 		
