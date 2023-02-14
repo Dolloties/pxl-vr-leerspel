@@ -28,7 +28,7 @@ func _ready():
 
 func _on_Area_body_entered(body):
 	print(body)
-	
+	queue_free()
 	#check if it was the good or bad one
 	
 
@@ -37,5 +37,5 @@ func _on_Area_body_entered(body):
 
 func _on_Area2_body_entered2(body):
 	print(body)
-	
+	queue_free()
 	 # Replace with function body.
