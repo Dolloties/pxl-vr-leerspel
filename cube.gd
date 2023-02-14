@@ -2,7 +2,7 @@ extends Spatial
 
 
 export var snelheid = 50
-const kill_time = 10
+const kill_time = 20
 var timer = 0
 func _physics_process(delta):
 	var forward_direction = global_transform.basis.z.normalized()
@@ -29,6 +29,7 @@ func _ready():
 
 func _on_Area_body_entered(body):
 	print("i hit something?", body)
+	queue_free()
 	#check if it was the good or bad one
 	
 
@@ -37,4 +38,5 @@ func _on_Area_body_entered(body):
 
 func _on_Area2_body_entered2(body):
 	print("i hit something2?", body)
+	queue_free()
 	 # Replace with function body.

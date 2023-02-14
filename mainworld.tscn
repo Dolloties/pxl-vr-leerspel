@@ -88,7 +88,9 @@ text = "wave 1!!!"
 font = SubResource( 10 )
 
 [node name="Timer2" type="Timer" parent="spawner"]
-wait_time = 3.0
+pause_mode = 2
+process_mode = 0
+wait_time = 0.5
 
 [node name="foute kant" type="Label3D" parent="."]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 5.31207, 6.79279 )
