@@ -3,11 +3,16 @@ extends Spatial
 onready var timer = $Timer
 var can_shoot = true
 export(PackedScene)  var cube
-onready var wave_timer = $Timer2
-export var cubesnelheid = 12
+
+export var cubesnelheid = 10
 var aantalblokkengespawned = 0
 var rng = RandomNumberGenerator.new()
-
+export var aantalblokkenvoornieuwewave = 5
+export var maalvan = 1
+export var maaltot = 5
+export var maal_aan_of_uit = true
+export var min_aan_of_uit = true
+export var plus_aan_of_uit = true
 func _ready():
 	pass
 
@@ -45,16 +50,23 @@ func shoot():
 			
 			can_shoot = false
 			timer.start()
-		var aantalblokkenvoornieuwewave = 4
-		var speeds = [15, 18, 21, 24, 27, 30, 33, 36, 40,40]
-		var times = [2, 1.5, 1.2, 1, 0.8, 0.6, 0.6, 0.6, 0.6,0,6]
-		var wave_texts = ["round 2!", "round 3!", "round 4!", "half way!", "round 6!!", "round 7!!", "round 8!!", "round 9!!", "final round!!!, u won!!!!!!!"]
+		
+		var speeds = [12, 13, 14, 15, 16, 17, 18, 19, 20,21]
+		var times = [3, 2.8, 2.6, 2.4, 2.2, 2, 1.8, 1.6, 1.4,1.2]
+		var wave_texts = ["round 2!", "round 3!", "round 4!", "half way!", "round 6!!", "round 7!!", "round 8!!", "round 9!!", "final round!!!"]
+		if aantalblokkengespawned == 10 * aantalblokkenvoornieuwewave:
+			can_shoot = false
+			$Timer.stop()
+			$uwontimer.start()
+			$wavee.text = ""
+			
 		for i in range(10):
-			if aantalblokkengespawned == (i + 1) * aantalblokkenvoornieuwewave:
+			if aantalblokkengespawned == (i + 1) * aantalblokkenvoornieuwewave and aantalblokkengespawned < 10 * aantalblokkenvoornieuwewave :
 				cubesnelheid = speeds[i]
 				$Timer.wait_time = times[i]
 				$wavee.text = wave_texts[i]
 				break
+	
 
 		# handle case where aantalblokkengespawned is not one of the expected values
 
@@ -63,26 +75,34 @@ func get_equation():
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
 	var operators = ["+", "-", "*"]
-	var first_number = int(rng.randf_range(1, 20))
-	var second_number = int(rng.randf_range(1, 20))
-	var maalnummer = int(rng.randf_range(1, 5))
-	var maalnummer2 = int(rng.randf_range(1, 10))
+	var plusnummer = int(rng.randf_range(1, 20))
+	var plusnummer2 = int(rng.randf_range(1, 20))
+	var minnummer = int(rng.randf_range(1, 20))
+	var minnummer2 = int(rng.randf_range(1, 20))
+	var maalnummer = int(rng.randf_range(1, 10))
+	var maalnummer2 = int(rng.randf_range(maalvan, maaltot))
 	var operator = operators[int(rng.randf_range(0, operators.size()))]
 	var correct_answer = 0
 	if operator == "+":
-		correct_answer = first_number + second_number
+		correct_answer = plusnummer + plusnummer2
 	elif operator == "-":
-		correct_answer = first_number - second_number
+		correct_answer = minnummer - minnummer2
 	elif operator == "*":
-		correct_answer = maalnummer2 * maalnummer
+		correct_answer = maalnummer * maalnummer2
 		
 	var wrong_answer = int(rng.randf_range(correct_answer - 5, correct_answer + 5))
 	while wrong_answer == correct_answer:
 		wrong_answer = int(rng.randf_range(correct_answer - 5, correct_answer + 5))
 	if operator == "*":
-		return [str(maalnummer2) + "*" + str(maalnummer), str(correct_answer), str(wrong_answer)]
-	else:
-		return [str(first_number) + operator + str(second_number), str(correct_answer), str(wrong_answer)]
+		return [str(maalnummer) + operator + str(maalnummer2), str(correct_answer), str(wrong_answer)]
+	elif operator == "+":
+		return [str(plusnummer) + operator + str(plusnummer2), str(correct_answer), str(wrong_answer)]
+	elif operator == "-":
+		return [str(minnummer) + operator + str(minnummer2), str(correct_answer), str(wrong_answer)]
 
 func _on_Timer_timeout():
 	can_shoot = true 
+
+
+func _on_uwontimer_timeout():
+	$wavee.text = "u won!!!" # Replace with function body.

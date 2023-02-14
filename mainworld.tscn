@@ -74,12 +74,15 @@ material/0 = SubResource( 6 )
 [node name="spawner" type="Spatial" parent="."]
 script = ExtResource( 2 )
 cube = ExtResource( 3 )
+aantalblokkenvoornieuwewave = 2
+maalvan = 2
+maaltot = 3
 
 [node name="Position3D" type="Position3D" parent="spawner"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -70 )
 
 [node name="Timer" type="Timer" parent="spawner"]
-wait_time = 4.0
+wait_time = 3.2
 autostart = true
 
 [node name="wavee" type="Label3D" parent="spawner"]
@@ -87,10 +90,10 @@ transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 1, 0, 8.97884, -9.6058 )
 text = "wave 1!!!"
 font = SubResource( 10 )
 
-[node name="Timer2" type="Timer" parent="spawner"]
+[node name="uwontimer" type="Timer" parent="spawner"]
 pause_mode = 2
 process_mode = 0
-wait_time = 0.5
+wait_time = 5.0
 
 [node name="foute kant" type="Label3D" parent="."]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 5.31207, 6.79279 )
@@ -202,3 +205,4 @@ transform = Transform( 1, 0, 0, 0, 30, 0, 0, 0, 1, -2, 14.485, -89 )
 mesh = SubResource( 9 )
 
 [connection signal="timeout" from="spawner/Timer" to="spawner" method="_on_Timer_timeout"]
+[connection signal="timeout" from="spawner/uwontimer" to="spawner" method="_on_uwontimer_timeout"]
