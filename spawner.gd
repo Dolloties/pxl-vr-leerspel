@@ -8,6 +8,7 @@ export var cubesnelheid = 10
 var aantalblokkengespawned = 0
 var rng = RandomNumberGenerator.new()
 export var aantalblokkenvoornieuwewave = 5
+export var eigenvragen = false
 export var maal_aan_of_uit = true
 export var delen_aan_of_uit = true
 export var min_aan_of_uit = true
@@ -22,6 +23,9 @@ export var mintot = 20
 export var plusvan = 1
 export var plustot = 20
 
+
+
+
 func _ready():
 	pass
 
@@ -35,12 +39,14 @@ func shoot():
 		var new_cube = cube.instance()
 		aantalblokkengespawned += 1
 		new_cube.global_transform = $Position3D.global_transform
-		new_cube.snelheid = cubesnelheid
+		new_cube.snelheid = cubesnelheid    
 		var scene_root = get_tree().get_root().get_children()[0]
 		scene_root.add_child(new_cube)
+		
+		
+		
+		
 		var result = get_equation()
-		
-		
 		new_cube.get_node("formule").text = result[0]
 		print(result[0])
 		print(result[1])
@@ -80,42 +86,53 @@ func shoot():
 		# handle case where aantalblokkengespawned is not one of the expected values
 
 func get_equation():
-	
-	var rng = RandomNumberGenerator.new()
-	rng.randomize()
-	
-	var operators = []
-	if maal_aan_of_uit:
-		operators.append("*")
-	if min_aan_of_uit:
-		operators.append("-")
-	if plus_aan_of_uit:
-		operators.append("+")
-	
-	var plusnummer = int(rng.randf_range(1, 20))
-	var plusnummer2 = int(rng.randf_range(plusvan, plustot))
-	var minnummer = int(rng.randf_range(1, 20))
-	var minnummer2 = int(rng.randf_range(minvan, mintot))
-	var maalnummer = int(rng.randf_range(1, 10))
-	var maalnummer2 = int(rng.randf_range(maalvan, maaltot))
-	var operator = operators[int(rng.randf_range(0, operators.size()))]
-	var correct_answer = 0
-	if operator == "+":
-		correct_answer = plusnummer + plusnummer2
-	elif operator == "-":
-		correct_answer = minnummer - minnummer2
-	elif operator == "*":
-		correct_answer = maalnummer * maalnummer2
+	if eigenvragen == false:
+		var rng = RandomNumberGenerator.new()
+		rng.randomize()
 		
-	var wrong_answer = int(rng.randf_range(correct_answer - 5, correct_answer + 5))
-	while wrong_answer == correct_answer:
-		wrong_answer = int(rng.randf_range(correct_answer - 5, correct_answer + 5))
-	if operator == "*":
-		return [str(maalnummer) + operator + str(maalnummer2), str(correct_answer), str(wrong_answer)]
-	elif operator == "+":
-		return [str(plusnummer) + operator + str(plusnummer2), str(correct_answer), str(wrong_answer)]
-	elif operator == "-":
-		return [str(minnummer) + operator + str(minnummer2), str(correct_answer), str(wrong_answer)]
+		var operators = []
+		if maal_aan_of_uit:
+			operators.append("*")
+		if delen_aan_of_uit:
+			operators.append("/")
+		if min_aan_of_uit:
+			operators.append("-")
+		if plus_aan_of_uit:
+			operators.append("+")
+			
+		
+		var plusnummer = int(rng.randf_range(1, 20))
+		var plusnummer2 = int(rng.randf_range(plusvan, plustot))
+		var minnummer = int(rng.randf_range(1, 20))
+		var minnummer2 = int(rng.randf_range(minvan, mintot))
+		var maalnummer = int(rng.randf_range(1, 10))
+		var maalnummer2 = int(rng.randf_range(maalvan, maaltot))
+		var delennummer = int(rng.randf_range(1, 10))
+		var delennummer2 = int(rng.randf_range(delenvan, delentot))
+		var operator = operators[int(rng.randf_range(0, operators.size()))]
+		var correct_answer = 0
+		if operator == "+":
+			correct_answer = plusnummer + plusnummer2
+		if operator == "/":
+			correct_answer = delennummer / delennummer2
+		elif operator == "-":
+			correct_answer = minnummer - minnummer2
+		elif operator == "*":
+			correct_answer = maalnummer * maalnummer2
+			
+		var wrong_answer = int(rng.randf_range(correct_answer - 5, correct_answer + 5))
+		while wrong_answer == correct_answer:
+			wrong_answer = int(rng.randf_range(correct_answer - 5, correct_answer + 5))
+		if operator == "*":
+			return [str(maalnummer) + operator + str(maalnummer2), str(correct_answer), str(wrong_answer)]
+		if operator == "/":
+			return [str(delennummer) + operator + str(delennummer2), str(correct_answer), str(wrong_answer)]
+		elif operator == "+":
+			return [str(plusnummer) + operator + str(plusnummer2), str(correct_answer), str(wrong_answer)]
+		elif operator == "-":
+			return [str(minnummer) + operator + str(minnummer2), str(correct_answer), str(wrong_answer)]
+	
+		
 
 func _on_Timer_timeout():
 	can_shoot = true 

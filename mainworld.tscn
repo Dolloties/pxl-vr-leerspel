@@ -74,8 +74,11 @@ material/0 = SubResource( 6 )
 [node name="spawner" type="Spatial" parent="."]
 script = ExtResource( 2 )
 cube = ExtResource( 3 )
-aantalblokkenvoornieuwewave = 2
-maal_aan_of_uit = false
+delen_aan_of_uit = false
+min_aan_of_uit = false
+plus_aan_of_uit = false
+delenvan = 2
+delentot = 6
 
 [node name="Position3D" type="Position3D" parent="spawner"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -70 )

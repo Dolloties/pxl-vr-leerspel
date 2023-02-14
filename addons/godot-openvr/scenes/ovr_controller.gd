@@ -30,3 +30,6 @@ func _process(delta):
 	# make it visible
 	visible = true
 	emit_signal("controller_activated", self)
+
+
+ # Replace with function body.
