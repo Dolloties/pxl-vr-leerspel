@@ -8,11 +8,20 @@ export var cubesnelheid = 10
 var aantalblokkengespawned = 0
 var rng = RandomNumberGenerator.new()
 export var aantalblokkenvoornieuwewave = 5
-export var maalvan = 1
-export var maaltot = 5
 export var maal_aan_of_uit = true
+export var delen_aan_of_uit = true
 export var min_aan_of_uit = true
 export var plus_aan_of_uit = true
+
+export var maalvan = 1
+export var maaltot = 3
+export var delenvan = 1
+export var delentot = 3
+export var minvan = 1
+export var mintot = 20
+export var plusvan = 1
+export var plustot = 20
+
 func _ready():
 	pass
 
@@ -74,11 +83,19 @@ func get_equation():
 	
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
-	var operators = ["+", "-", "*"]
+	
+	var operators = []
+	if maal_aan_of_uit:
+		operators.append("*")
+	if min_aan_of_uit:
+		operators.append("-")
+	if plus_aan_of_uit:
+		operators.append("+")
+	
 	var plusnummer = int(rng.randf_range(1, 20))
-	var plusnummer2 = int(rng.randf_range(1, 20))
+	var plusnummer2 = int(rng.randf_range(plusvan, plustot))
 	var minnummer = int(rng.randf_range(1, 20))
-	var minnummer2 = int(rng.randf_range(1, 20))
+	var minnummer2 = int(rng.randf_range(minvan, mintot))
 	var maalnummer = int(rng.randf_range(1, 10))
 	var maalnummer2 = int(rng.randf_range(maalvan, maaltot))
 	var operator = operators[int(rng.randf_range(0, operators.size()))]
