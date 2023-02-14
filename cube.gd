@@ -3,6 +3,7 @@ extends Spatial
 export var snelheid = 50
 const kill_time = 20
 var timer = 0
+const new_cubejuist = true
 func _physics_process(delta):
 	var forward_direction = global_transform.basis.z.normalized()
 	global_translate(forward_direction * snelheid * delta)
@@ -26,16 +27,18 @@ func _ready():
 #	pass
 
 
+
+	 # Replace with function body.
 func _on_Area_body_entered(body):
-	print(body)
-	queue_free()
-	#check if it was the good or bad one
+	$cube1.queue_free()
+	$oplossing2.queue_free()
+	$formule.queue_free()
+
+func _on_Area2_body_entered(body):
+	$cube2.queue_free()
+	$oplossing2.queue_free()
+	$formule.queue_free()
 	
 
-# Replace with function body.
 
-
-func _on_Area2_body_entered2(body):
-	print(body)
-	queue_free()
-	 # Replace with function body.
+ # Replace with function body.

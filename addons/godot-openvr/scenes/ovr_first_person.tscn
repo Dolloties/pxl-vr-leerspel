@@ -25,14 +25,14 @@ func _physics_process(delta):
 "
 
 [node name="OVRFirstPerson" type="ARVROrigin"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="ARVRCamera" type="ARVRCamera" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.85, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.89054, 0 )
 fov = 65.0
 near = 0.01
 far = 1000.01
