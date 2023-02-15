@@ -76,5 +76,5 @@ pixel_size = 0.05
 text = "bad"
 
 [connection signal="body_entered" from="cube1/Area" to="." method="_on_Area_body_entered"]
-[connection signal="body_entered" from="cube2/Area2" to="." method="_on_Area2_body_entered2"]
 [connection signal="body_entered" from="cube2/Area2" to="." method="_on_Area2_body_entered"]
+[connection signal="body_entered" from="cube2/Area2" to="." method="_on_Area2_body_entered2"]

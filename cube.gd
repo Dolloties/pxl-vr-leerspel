@@ -29,6 +29,14 @@ func _physics_process(delta):
 
 	 # Replace with function body.
 func _on_Area_body_entered(body):
+	var texty = $cube1/g_b1.get_text()
+	if texty == "right":
+		#punt erbij
+		pass
+	elif texty == "wrong":
+		#punt eraf
+		pass
+	print(texty)
 	$oplossing2.queue_free()
 	$cube1.queue_free()
 
@@ -37,6 +45,7 @@ func _on_Area_body_entered(body):
 	
 
 func _on_Area2_body_entered(body):
+	var texty = $cube2/g_b2.get_text()
 	$oplossing1.queue_free()
 	$cube2.queue_free()
 	
