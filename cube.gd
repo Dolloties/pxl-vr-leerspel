@@ -16,10 +16,9 @@ func _physics_process(delta):
 # var a = 2
 # var b = "text"
 
-
+	# Do something with the info
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+# Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -30,14 +29,18 @@ func _ready():
 
 	 # Replace with function body.
 func _on_Area_body_entered(body):
-	$cube1.queue_free()
 	$oplossing2.queue_free()
-	$formule.queue_free()
+	$cube1.queue_free()
+
+
+
+	
 
 func _on_Area2_body_entered(body):
+	$oplossing1.queue_free()
 	$cube2.queue_free()
-	$oplossing2.queue_free()
-	$formule.queue_free()
+	
+	
 	
 
 

@@ -26,8 +26,7 @@ export var plustot = 20
 
 
 
-func _ready():
-	pass
+
 
 func _process(delta):
 	shoot()
