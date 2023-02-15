@@ -25,9 +25,9 @@ __meta__ = {
 snelheid = 30
 
 [node name="formule" type="Label3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.85526, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.58345, 0 )
 cast_shadow = 0
-pixel_size = 0.1
+pixel_size = 0.05
 modulate = Color( 1, 0, 0.937255, 1 )
 text = "de formule"
 font = SubResource( 3 )
@@ -55,7 +55,7 @@ material/0 = SubResource( 2 )
 shape = SubResource( 4 )
 
 [node name="g_b1" type="Label3D" parent="cube1"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0279264, 1.72494, 0 )
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 1, -0.0279264, 0.352942, 0 )
 pixel_size = 0.05
 text = "good"
 
@@ -71,7 +71,7 @@ material/0 = SubResource( 2 )
 shape = SubResource( 5 )
 
 [node name="g_b2" type="Label3D" parent="cube2"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0734911, 1.77588, 0 )
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 1, -0.0734911, 0.302162, 0 )
 pixel_size = 0.05
 text = "bad"
 

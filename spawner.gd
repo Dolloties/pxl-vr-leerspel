@@ -3,7 +3,8 @@ extends Spatial
 onready var timer = $Timer
 var can_shoot = true
 export(PackedScene)  var cube
-
+export var moeilijkheid_snelheid = 0
+var moeilijkheid_tijd = 0.2
 export var cubesnelheid = 10
 var aantalblokkengespawned = 0
 var rng = RandomNumberGenerator.new()
@@ -22,10 +23,25 @@ export var minvan = 1
 export var mintot = 20
 export var plusvan = 1
 export var plustot = 20
+var punten = 0
+var levens = 5
+var game_over = 0
+	
 
-
-
-
+func on_punterbij():
+	
+	punten += 1
+	
+	$punten.text =  "score: " + str(punten)
+func on_punteraf():
+	
+	
+	levens -= 1
+	$levens.text = "levens: " + str(levens)
+	if levens == 0:
+		$wavee.text = "game over"
+		game_over = 1
+		
 
 
 func _process(delta):
@@ -33,7 +49,7 @@ func _process(delta):
 	
 func shoot():
 		
-	if can_shoot:
+	if can_shoot and game_over == 0:
 		var rand = randi() % 2
 		var new_cube = cube.instance()
 		aantalblokkengespawned += 1
@@ -41,7 +57,8 @@ func shoot():
 		new_cube.snelheid = cubesnelheid    
 		var scene_root = get_tree().get_root().get_children()[0]
 		scene_root.add_child(new_cube)
-		
+		new_cube.connect("punterbij",self, "on_punterbij")
+		new_cube.connect("punteraf",self, "on_punteraf")
 		
 		
 		
@@ -65,9 +82,9 @@ func shoot():
 			can_shoot = false
 			timer.start()
 		
-		var speeds = [12, 13, 14, 15, 16, 17, 18, 19, 20,21]
-		var times = [3, 2.8, 2.6, 2.4, 2.2, 2, 1.8, 1.6, 1.4,1.2]
-		var wave_texts = ["round 2!", "round 3!", "round 4!", "half way!", "round 6!!", "round 7!!", "round 8!!", "round 9!!", "final round!!!"]
+		var speeds = [12 + moeilijkheid_snelheid, 13 + moeilijkheid_snelheid, 14 + moeilijkheid_snelheid, 15 + moeilijkheid_snelheid, 16 + moeilijkheid_snelheid, 17 + moeilijkheid_snelheid, 18 + moeilijkheid_snelheid, 19 + moeilijkheid_snelheid, 20 + moeilijkheid_snelheid,21 + moeilijkheid_snelheid]
+		var times = [3 - moeilijkheid_tijd, 2.8 - moeilijkheid_tijd, 2.6 - moeilijkheid_tijd, 2.4 - moeilijkheid_tijd, 2.2 - moeilijkheid_tijd, 2 - moeilijkheid_tijd, 1.8 - moeilijkheid_tijd, 1.6 - moeilijkheid_tijd, 1.4 - moeilijkheid_tijd,1.2 - moeilijkheid_tijd]
+		var wave_texts = ["round 2!", "round 3!", "round 4!", "round 5!", "round 6!", "round 7!", "round 8!", "round 9!", "round 10!"]
 		if aantalblokkengespawned == 10 * aantalblokkenvoornieuwewave:
 			can_shoot = false
 			$Timer.stop()
