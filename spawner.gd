@@ -126,11 +126,12 @@ func get_equation():
 		var delennummer = int(rng.randf_range(1, 10))
 		var delennummer2 = int(rng.randf_range(delenvan, delentot))
 		var operator = operators[int(rng.randf_range(0, operators.size()))]
-		var correct_answer = 0
+		var correct_answer = 0.5
 		if operator == "+":
 			correct_answer = plusnummer + plusnummer2
 		if operator == "/":
-			correct_answer = delennummer / delennummer2
+			correct_answer = 5 / 2
+			
 		elif operator == "-":
 			correct_answer = minnummer - minnummer2
 		elif operator == "*":

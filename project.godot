@@ -14,6 +14,10 @@ config/name="pxl vr leerspel"
 run/main_scene="res://mainworld.tscn"
 config/icon="res://icon.png"
 
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/godot-openvr/plugin.cfg" )
+
 [gdnative]
 
 singletons=[ "res://addons/godot-openvr/godot_openvr.gdnlib" ]

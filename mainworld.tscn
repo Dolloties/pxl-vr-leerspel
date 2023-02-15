@@ -45,10 +45,12 @@ material = SubResource( 8 )
 script = ExtResource( 2 )
 cube = ExtResource( 3 )
 moeilijkheid_snelheid = 4
-delen_aan_of_uit = false
+maal_aan_of_uit = false
+min_aan_of_uit = false
+plus_aan_of_uit = false
 maalvan = 2
 maaltot = 5
-delenvan = 2
+delentot = 10
 
 [node name="Position3D" type="Position3D" parent="spawner"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -70 )
