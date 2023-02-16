@@ -4,8 +4,7 @@ onready var timer = $Timer
 
 var can_shoot = true
 export(PackedScene)  var cube
-export var moeilijkheid_snelheid = 0
-var moeilijkheid_tijd = 0.2
+
 export var cubesnelheid = 10
 var aantalblokkengespawned = 0
 var rng = RandomNumberGenerator.new()
@@ -87,8 +86,8 @@ func shoot():
 			can_shoot = false
 			timer.start()
 		
-		var speeds = [12 + moeilijkheid_snelheid, 13 + moeilijkheid_snelheid, 14 + moeilijkheid_snelheid, 15 + moeilijkheid_snelheid, 16 + moeilijkheid_snelheid, 17 + moeilijkheid_snelheid, 18 + moeilijkheid_snelheid, 19 + moeilijkheid_snelheid, 20 + moeilijkheid_snelheid,21 + moeilijkheid_snelheid]
-		var times = [3 - moeilijkheid_tijd, 2.8 - moeilijkheid_tijd, 2.6 - moeilijkheid_tijd, 2.4 - moeilijkheid_tijd, 2.2 - moeilijkheid_tijd, 2 - moeilijkheid_tijd, 1.8 - moeilijkheid_tijd, 1.6 - moeilijkheid_tijd, 1.4 - moeilijkheid_tijd,1.2 - moeilijkheid_tijd]
+		
+		
 		var wave_texts = ["round 2!", "round 3!", "round 4!", "round 5!", "round 6!", "round 7!", "round 8!", "round 9!", "round 10!"]
 		if aantalblokkengespawned == 10 * aantalblokkenvoornieuwewave:
 			can_shoot = false
@@ -98,8 +97,8 @@ func shoot():
 			
 		for i in range(10):
 			if aantalblokkengespawned == (i + 1) * aantalblokkenvoornieuwewave and aantalblokkengespawned < 10 * aantalblokkenvoornieuwewave :
-				cubesnelheid = speeds[i]
-				$Timer.wait_time = times[i]
+				cubesnelheid += 2
+				$Timer.wait_time -= 0.2
 				$wavee.text = wave_texts[i]
 				break
 	

@@ -2,9 +2,10 @@ extends Spatial
 
 signal punterbij
 signal punteraf
-
+var cube1hit = 0
+var cube2hit = 0
 export var snelheid = 50
-const kill_time = 10
+const kill_time = 7.5
 var timer = 0
 const new_cubejuist = true
 func _physics_process(delta):
@@ -13,7 +14,11 @@ func _physics_process(delta):
 	
 	timer += delta
 	if timer >= kill_time:
-		emit_signal("punteraf")
+		if cube1hit == 0 and cube2hit == 0:
+			emit_signal("punteraf")
+		else:
+			cube1hit = 0
+			cube2hit = 0
 		queue_free()
 	
 # Declare member variables here. Examples:
@@ -34,6 +39,8 @@ func _physics_process(delta):
 	 # Replace with function body.
 func _on_Area_body_entered(body):
 	var texty = $cube1/g_b1.get_text()
+	cube1hit = 1
+	
 	if texty == "right":
 		
 		emit_signal("punterbij")
@@ -43,6 +50,7 @@ func _on_Area_body_entered(body):
 	
 	$oplossing2.queue_free()
 	$cube1.queue_free()
+	
 
 
 
@@ -50,6 +58,7 @@ func _on_Area_body_entered(body):
 
 func _on_Area2_body_entered(body):
 	var texty = $cube2/g_b2.get_text()
+	cube2hit = 1
 	if texty == "right":
 		emit_signal("punterbij")
 		
