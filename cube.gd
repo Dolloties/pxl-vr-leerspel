@@ -7,10 +7,17 @@ var cube2hit = 0
 export var snelheid = 50
 const kill_time = 7.5
 var timer = 0
+var up = 0
+export var height = 0.0
 const new_cubejuist = true
+var i = 0
+var y = 100
+var i2 = 50
+var y2 = 100
 func _physics_process(delta):
 	var forward_direction = global_transform.basis.z.normalized()
 	global_translate(forward_direction * snelheid * delta)
+	
 	
 	timer += delta
 	if timer >= kill_time:

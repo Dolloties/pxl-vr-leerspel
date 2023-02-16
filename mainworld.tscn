@@ -82,6 +82,9 @@ transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 1, 0, 3.29586, -11.3953 )
 pixel_size = 0.02
 font = SubResource( 10 )
 
+[node name="restart" type="Timer" parent="spawner"]
+wait_time = 5.0
+
 [node name="foute kant" type="Label3D" parent="."]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 5.31207, 6.79279 )
 pixel_size = 0.09
@@ -227,3 +230,4 @@ mesh = SubResource( 9 )
 
 [connection signal="timeout" from="spawner/Timer" to="spawner" method="_on_Timer_timeout"]
 [connection signal="timeout" from="spawner/uwontimer" to="spawner" method="_on_uwontimer_timeout"]
+[connection signal="timeout" from="spawner/restart" to="spawner" method="_on_restart_timeout"]

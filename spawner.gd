@@ -35,12 +35,15 @@ func on_punterbij():
 	$punten.text =  "score: " + str(punten)
 func on_punteraf():
 	
-	
-	levens -= 1
+	if levens == 0:
+		pass
+	else:
+		levens -= 1
 	$levens.text = "levens: " + str(levens)
 	if levens == 0:
 		$wavee.text = "game over"
 		game_over = 1
+		restart_game()
 		
 func _ready():
 	# Set initial label text to 5
@@ -178,4 +181,10 @@ func countdown():
 		yield(get_tree().create_timer(1.0), "timeout")
 		# Count has reached 0, do something else here
 		pass
+func restart_game():
+	$restart.start()
 # Replace with function body.
+
+
+func _on_restart_timeout():
+	pass# Replace with function body.
