@@ -1,6 +1,7 @@
 extends Spatial
 
 onready var timer = $Timer
+
 var can_shoot = true
 export(PackedScene)  var cube
 export var moeilijkheid_snelheid = 0
@@ -26,7 +27,7 @@ var punten = 0
 var levens = 5
 var game_over = 0
 var startklicked = 0
-	
+onready var label = $countdownlabel
 
 func on_punterbij():
 	
@@ -42,7 +43,11 @@ func on_punteraf():
 		$wavee.text = "game over"
 		game_over = 1
 		
-
+func _ready():
+	# Set initial label text to 5
+	label.text = "5"
+	# Start countdown
+	countdown()
 
 func _process(delta):
 	shoot()
@@ -153,6 +158,25 @@ func _on_Timer_timeout():
 func _on_uwontimer_timeout():
 	$wavee.text = "u won!!!" # Replace with function body.
 
-
-func _on_Button_pressed():
-	startklicked = 1 # Replace with function body.
+func countdown():
+	var count = int(label.text)
+	if count > 1:
+		# Subtract 1 from count and update label text
+		count -= 1
+		label.text = str(count)
+		# Wait for 1 second before calling countdown() again
+		yield(get_tree().create_timer(1.0), "timeout")
+		countdown()
+	elif count == 1:
+		# Display "start" and wait for 1 second
+		label.text = "start"
+		startklicked =1
+		yield(get_tree().create_timer(1.0), "timeout")
+		# Subtract 1 from count and update label text to 0
+		
+		label.text = ""
+		# Wait for 1 second before doing something else
+		yield(get_tree().create_timer(1.0), "timeout")
+		# Count has reached 0, do something else here
+		pass
+# Replace with function body.
