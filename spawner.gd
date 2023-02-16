@@ -44,7 +44,7 @@ func on_punteraf():
 		
 func _ready():
 	# Set initial label text to 5
-	label.text = "5"
+	label.text = "10"
 	# Start countdown
 	countdown()
 
