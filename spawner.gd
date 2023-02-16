@@ -11,14 +11,13 @@ var rng = RandomNumberGenerator.new()
 export var aantalblokkenvoornieuwewave = 5
 export var eigenvragen = false
 export var maal_aan_of_uit = true
-export var delen_aan_of_uit = true
+
 export var min_aan_of_uit = true
 export var plus_aan_of_uit = true
 
 export var maalvan = 1
 export var maaltot = 3
-export var delenvan = 1
-export var delentot = 3
+
 export var minvan = 1
 export var mintot = 20
 export var plusvan = 1
@@ -26,6 +25,7 @@ export var plustot = 20
 var punten = 0
 var levens = 5
 var game_over = 0
+var startklicked = 0
 	
 
 func on_punterbij():
@@ -49,7 +49,7 @@ func _process(delta):
 	
 func shoot():
 		
-	if can_shoot and game_over == 0:
+	if can_shoot and game_over == 0 and startklicked == 1:
 		var rand = randi() % 2
 		var new_cube = cube.instance()
 		aantalblokkengespawned += 1
@@ -109,8 +109,7 @@ func get_equation():
 		var operators = []
 		if maal_aan_of_uit:
 			operators.append("*")
-		if delen_aan_of_uit:
-			operators.append("/")
+
 		if min_aan_of_uit:
 			operators.append("-")
 		if plus_aan_of_uit:
@@ -123,15 +122,12 @@ func get_equation():
 		var minnummer2 = int(rng.randf_range(minvan, mintot))
 		var maalnummer = int(rng.randf_range(1, 10))
 		var maalnummer2 = int(rng.randf_range(maalvan, maaltot))
-		var delennummer = int(rng.randf_range(1, 10))
-		var delennummer2 = int(rng.randf_range(delenvan, delentot))
+		
 		var operator = operators[int(rng.randf_range(0, operators.size()))]
 		var correct_answer = 0.5
 		if operator == "+":
 			correct_answer = plusnummer + plusnummer2
-		if operator == "/":
-			correct_answer = 5 / 2
-			
+		
 		elif operator == "-":
 			correct_answer = minnummer - minnummer2
 		elif operator == "*":
@@ -142,8 +138,7 @@ func get_equation():
 			wrong_answer = int(rng.randf_range(correct_answer - 5, correct_answer + 5))
 		if operator == "*":
 			return [str(maalnummer) + operator + str(maalnummer2), str(correct_answer), str(wrong_answer)]
-		if operator == "/":
-			return [str(delennummer) + operator + str(delennummer2), str(correct_answer), str(wrong_answer)]
+		
 		elif operator == "+":
 			return [str(plusnummer) + operator + str(plusnummer2), str(correct_answer), str(wrong_answer)]
 		elif operator == "-":
@@ -157,3 +152,7 @@ func _on_Timer_timeout():
 
 func _on_uwontimer_timeout():
 	$wavee.text = "u won!!!" # Replace with function body.
+
+
+func _on_Button_pressed():
+	startklicked = 1 # Replace with function body.
