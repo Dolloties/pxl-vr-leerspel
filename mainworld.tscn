@@ -78,7 +78,7 @@ text = "levens: 5"
 font = SubResource( 10 )
 
 [node name="countdownlabel" type="Label3D" parent="spawner"]
-transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 1, 0, 3.29586, -11.3953 )
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 1, 0, 1.82492, -15.2411 )
 pixel_size = 0.02
 font = SubResource( 10 )
 

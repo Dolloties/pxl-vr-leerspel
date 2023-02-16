@@ -12,11 +12,25 @@ export var height = 0.0
 const new_cubejuist = true
 var i = 0
 var y = 100
-var i2 = 50
-var y2 = 100
+export var up_down = true 
 func _physics_process(delta):
 	var forward_direction = global_transform.basis.z.normalized()
 	global_translate(forward_direction * snelheid * delta)
+	if up_down:
+		if i < 100:
+			var up = global_transform.basis.y.normalized()
+			global_translate(up * 1.5 * delta)
+			
+			i += 1
+			if i == 100:
+				y = 0
+		elif y < 100:
+			var up = global_transform.basis.y.normalized()
+			global_translate(up * -1.5 * delta)
+			
+			y += 1
+			if y == 100:
+				i = 0
 	
 	
 	timer += delta
