@@ -44,11 +44,13 @@ material = SubResource( 8 )
 [node name="spawner" type="Spatial" parent="."]
 script = ExtResource( 2 )
 cube = ExtResource( 3 )
+min_aan_of_uit = false
+plus_aan_of_uit = false
 maalvan = 2
 maaltot = 5
 
 [node name="Position3D" type="Position3D" parent="spawner"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -70 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -84.1035 )
 
 [node name="Timer" type="Timer" parent="spawner"]
 wait_time = 3.2

@@ -5,7 +5,7 @@ signal punteraf
 var cube1hit = 0
 var cube2hit = 0
 export var snelheid = 50
-const kill_time = 7.5
+const kill_time = 9
 var timer = 0
 var up = 0
 export var height = 0.0

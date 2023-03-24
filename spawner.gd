@@ -47,7 +47,7 @@ func on_punteraf():
 		
 func _ready():
 	# Set initial label text to 5
-	label.text = "10"
+	label.text = "3"
 	# Start countdown
 	countdown()
 
@@ -152,6 +152,37 @@ func get_equation():
 			return [str(minnummer) + operator + str(minnummer2), str(correct_answer), str(wrong_answer)]
 	
 		
+#func get_equation():
+	if eigenvragen == false:
+		var rng = RandomNumberGenerator.new()
+		rng.randomize()
+		
+		var verbs = ["avoir", "être", "faire"]
+		var subjects = ["je", "tu", "il/elle/on", "nous", "vous", "ils/elles"]
+		
+		var verb = verbs[int(rng.randf_range(0, verbs.size()))]
+		var subject = subjects[int(rng.randf_range(0, subjects.size()))]
+		var correct_answer = ""
+		
+		if verb == "avoir":
+			correct_answer = "eu"
+		elif verb == "être":
+			correct_answer = "allé(e)"
+		elif verb == "faire":
+			correct_answer = "fait"
+		
+		var wrong_answer = ""
+		while wrong_answer == "" or wrong_answer == correct_answer:
+			wrong_answer = ""
+			if verb == "avoir":
+				wrong_answer = "été"
+			elif verb == "être":
+				wrong_answer = "fait"
+			elif verb == "faire":
+				wrong_answer = "eu"
+		
+		return [subject + " " + verb + " (passé composé)", correct_answer, wrong_answer]
+
 
 func _on_Timer_timeout():
 	can_shoot = true 

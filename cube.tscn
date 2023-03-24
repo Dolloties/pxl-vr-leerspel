@@ -33,13 +33,15 @@ text = "de formule"
 font = SubResource( 3 )
 
 [node name="oplossing1" type="Label3D" parent="."]
-transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 1, 1.5, 0, 0.55 )
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 1, 1.5, 0, 0.55 )
+pixel_size = 0.02
 modulate = Color( 1, 0, 0.937255, 1 )
 text = "9"
 font = SubResource( 3 )
 
 [node name="oplossing2" type="Label3D" parent="."]
-transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 1, -1.5, 0, 0.55 )
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 1, -1.5, 0, 0.55 )
+pixel_size = 0.02
 modulate = Color( 1, 0, 0.937255, 1 )
 text = "6"
 font = SubResource( 3 )
